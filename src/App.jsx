@@ -1,38 +1,68 @@
 import React from 'react';
+import TreasureMapSchedule from './TreasureMapSchedule.jsx';
 
 const NavBar = () => (
     <nav style={{
         position: 'sticky',
         top: 0,
-        backgroundColor: '#ffffffcc',
         backdropFilter: 'blur(6px)',
         borderBottom: '1px solid #eee',
         padding: '1rem',
-        font: 'Quicksand, sans-serif',
+        fontFamily: 'Quicksand, sans-serif',
         display: 'flex',
         gap: '1.5rem',
         justifyContent: 'center',
         zIndex: 1000
     }}>
-        <a href="#about">About</a>
-        <a href="#happening">What’s Happening</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#registration">Registration</a>
-        <a href="#faqs">FAQs</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" className="nav-link">About</a>
+        <a href="#schedule" className="nav-link">Schedule</a>
+        <a href="#registration" className="nav-link">Registration</a>
+        <a href="#faqs" className="nav-link">FAQs</a>
     </nav>
 );
+
+function BubbleLayer() {
+    const bubbles = Array.from({ length: 15 }, (_, i) => ({
+        left: Math.random() * 100 + '%',
+        size: Math.random() * 40 + 20 + 'px',
+        delay: Math.random() * 20 + 's',
+        duration: 10 + Math.random() * 10 + 's',
+    }));
+
+    return (
+        <div className="bubble-container">
+            {bubbles.map((b, i) => (
+                <img
+                    key={i}
+                    src="src/assets/Bubble.png"
+                    className="bubble"
+                    style={{
+                        left: b.left,
+                        width: b.size,
+                        animationDelay: b.delay,
+                        animationDuration: b.duration,
+                    }}
+                    alt="bubble"
+                />
+            ))}
+        </div>
+    );
+}
+
 
 function App() {
     return (
         <>
-            <NavBar/>
-            <div style={{ fontFamily: 'Quicksand, sans-serif', padding: '2rem', maxWidth: '800px', margin: 'auto' }}>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+                <BubbleLayer/>
+                <NavBar/>
+            <div style={{display: 'flex', justifyContent: 'center',maxWidth: '900px', padding: '2rem',}}>
+            <div style={{fontFamily: 'Quicksand, sans-serif', padding: '2rem', maxWidth: '960px', width: '100%'}}>
                 <header style={{ textAlign: 'center', marginBottom: '2rem' }}>
                     <h1 style={{ fontSize: '2.5rem', color: '#0077be' }}>
                         IslanderHack <span style={{ fontFamily: 'Quicksand, sans-serif'}}>2025</span>
                     </h1>
-                    <p style={{ fontSize: '1.2rem', color: '#333' }}>
+                    <p style={{ fontSize: '1.2rem' }}>
                         Official Hackathon of Texas A&M University – Corpus Christi 🌊
                     </p>
                 </header>
@@ -43,10 +73,6 @@ function App() {
                         IslanderHack is a three-day in-person hackathon hosted at Texas A&M University - Corpus Christi where students
                         come together to build tech projects, learn new skills, and meet fellow hackers.
                     </p>
-                </section>
-
-                <section id="happening" style={{ marginBottom: '2rem' }}>
-                    <h2>🌴 What’s Happening</h2>
                     <ul>
                         <li>💻 <strong>Hackathon Dates:</strong> September 19th–21st, 2025</li>
                         <li>📍 <strong>Location:</strong> Texas A&M University – Corpus Christi</li>
@@ -70,12 +96,9 @@ function App() {
 
                 <section id="schedule" style={{ marginBottom: '2rem' }}>
                     <h2>📅 Schedule</h2>
-                    <ul>
-                        <li>Day 1: Kickoff & Team Formation</li>
-                        <li>Day 2: Hacking & Workshops</li>
-                        <li>Day 3: Project Submission & Awards</li>
-                    </ul>
+                    <TreasureMapSchedule />
                 </section>
+
 
                 <section id="faqs" style={{ marginBottom: '2rem' }}>
                     <h2>❓ FAQs</h2>
@@ -87,20 +110,11 @@ function App() {
                     <p>Yes, IslanderHack is completely free to attend.</p>
                 </section>
 
-                <section id="contact" style={{ marginBottom: '2rem' }}>
-                    <h2>🧑‍💻 Want to Help?</h2>
-                    <p>
-                        Interested in building IslanderHack or joining the team? Reach out!
-                    </p>
-                    <p>
-                        📧 <strong>Email:</strong> <a href="mailto:IslanderHack@tamucc.edu">IslanderHack@tamucc.edu</a><br />
-                        📷 <strong>Instagram:</strong> (coming soon)
-                    </p>
-                </section>
-
-                <footer style={{ textAlign: 'center', fontSize: '0.9rem', color: '#777', marginTop: '4rem' }}>
+                <footer style={{ textAlign: 'center', fontSize: '0.9rem', marginTop: '4rem' }}>
                     🌊 Built by the IslanderHack25 Operations Team
                 </footer>
+            </div>
+            </div>
             </div>
         </>
     );
