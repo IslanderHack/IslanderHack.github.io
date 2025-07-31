@@ -21,40 +21,13 @@ const NavBar = () => (
     </nav>
 );
 
-function BubbleLayer() {
-    const bubbles = Array.from({ length: 15 }, (_, i) => ({
-        left: Math.random() * 100 + '%',
-        size: Math.random() * 40 + 20 + 'px',
-        delay: Math.random() * 20 + 's',
-        duration: 10 + Math.random() * 10 + 's',
-    }));
-
-    return (
-        <div className="bubble-container">
-            {bubbles.map((b, i) => (
-                <img
-                    key={i}
-                    src="src/assets/Bubble.png"
-                    className="bubble"
-                    style={{
-                        left: b.left,
-                        width: b.size,
-                        animationDelay: b.delay,
-                        animationDuration: b.duration,
-                    }}
-                    alt="bubble"
-                />
-            ))}
-        </div>
-    );
-}
 
 
 function App() {
     return (
         <>
             <div style={{ position: 'relative', zIndex: 1 }}>
-                <BubbleLayer/>
+
                 <NavBar/>
             <div style={{display: 'flex', justifyContent: 'center',maxWidth: '900px', padding: '2rem',}}>
             <div style={{fontFamily: 'Quicksand, sans-serif', padding: '2rem', maxWidth: '960px', width: '100%'}}>
